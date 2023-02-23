@@ -33,6 +33,9 @@ module.exports.AuthControllers = {
                 email: user.email,
                 phone: user.phone,
                 token,
+                contacts: user.contacts,
+                dates: user.dates,
+                notes: user.notes,
                 id: user.id,
             });
         } catch (error) {
