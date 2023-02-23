@@ -7,7 +7,7 @@ module.exports.AuthControllers = {
     login: async (req, res) => {
         try {
             const { body } = req;
-            const { userName, password } = body;
+            const { loginType, password } = body;
             const user = await User.findOne({ userName });
             const passwordCorrect =
                 user === null
