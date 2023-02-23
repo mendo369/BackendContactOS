@@ -4,6 +4,7 @@ const { config } = require("./src/config/config");
 const { dbConnect } = require("./src/database/mongo");
 
 const { AuthAPI } = require("./src/auth/index");
+const { ContactsAPI } = require("./src/contacts/index");
 const { UsersAPI } = require("./src/users/index");
 const { IndexApi, NotFoundApi } = require("./src/index/index");
 
@@ -14,7 +15,8 @@ app.use(cors());
 app.use(express.json()); //le damos la capacidad al servidor de recibir parametros en el request
 
 IndexApi(app);
-// AuthAPI(app);
+AuthAPI(app);
+ContactsAPI(app);
 // UsersAPI(app);
 NotFoundApi(app);
 

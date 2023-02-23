@@ -5,6 +5,24 @@ const userSchema = new Schema({
     phone: String,
     email: String,
     passwordHash: String,
+    contacts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Contact"
+        }
+    ],
+    notes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Note"
+        }
+    ],
+    dates: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Date"
+        }
+    ]
     // parches: [
     //     {
     //         type: Schema.Types.ObjectId,

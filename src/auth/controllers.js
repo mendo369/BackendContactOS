@@ -7,8 +7,8 @@ module.exports.AuthControllers = {
     login: async (req, res) => {
         try {
             const { body } = req;
-            const { loginType, password } = body;
-            const user = await User.findOne({ userName });
+            const { phone, password } = body;
+            const user = await User.findOne({ phone });
             const passwordCorrect =
                 user === null
                     ? false
@@ -22,7 +22,7 @@ module.exports.AuthControllers = {
 
             const userForToken = {
                 id: user._id,
-                userName: user.userName,
+                userName: user.email,
             };
 
             const token = jwt.sign(userForToken, `${process.env.jwt}`, {
@@ -30,9 +30,8 @@ module.exports.AuthControllers = {
             });
 
             await res.send({
-                name: user.name,
-                userName: user.userName,
-                avatar: user.avatar,
+                email: user.email,
+                phone: user.phone,
                 token,
                 id: user.id,
             });
@@ -56,10 +55,8 @@ module.exports.AuthControllers = {
 
             const passwordHash = await AuthServices.encrypt(password);
             const user = new User({
-                userName,
-                name,
                 email,
-                avatar,
+                phone,
                 passwordHash,
             });
 
